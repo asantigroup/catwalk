@@ -4,7 +4,6 @@ go 1.26.6
 
 require (
 	github.com/charmbracelet/x/etag v0.2.0
-	github.com/charmbracelet/x/exp/strings v0.1.0
 	github.com/prometheus/client_golang v1.24.1
 )
 
