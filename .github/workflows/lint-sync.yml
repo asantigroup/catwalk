@@ -11,4 +11,5 @@ permissions:
 
 jobs:
   lint:
+    if: github.repository == 'charmbracelet/catwalk'
     uses: charmbracelet/meta/.github/workflows/lint-sync.yml@main

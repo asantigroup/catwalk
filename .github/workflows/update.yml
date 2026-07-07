@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   update-providers:
+    if: github.repository == 'charmbracelet/catwalk'
     name: Update Providers
     runs-on: ubuntu-latest
     steps:

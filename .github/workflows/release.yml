@@ -11,6 +11,7 @@ concurrency:
 
 jobs:
   goreleaser:
+    if: github.repository == 'charmbracelet/catwalk'
     uses: charmbracelet/meta/.github/workflows/goreleaser.yml@main
     with:
       go_version: stable
@@ -21,6 +22,7 @@ jobs:
       gh_pat: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
   deploy:
+    if: github.repository == 'charmbracelet/catwalk'
     name: Run deploy workflow
     runs-on: ubuntu-latest
     needs: [goreleaser]
