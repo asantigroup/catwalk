@@ -6,6 +6,7 @@ on:
 
 jobs:
   lint:
+    if: github.repository == 'charmbracelet/catwalk'
     uses: charmbracelet/meta/.github/workflows/lint.yml@main
     with:
       golangci_version: v2.9

@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   dependabot-sync:
+    if: github.repository == 'charmbracelet/catwalk'
     uses: charmbracelet/meta/.github/workflows/dependabot-sync.yml@main
     with:
       repo_name: ${{ github.event.repository.name }}

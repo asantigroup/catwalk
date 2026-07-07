@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    if: github.repository == 'charmbracelet/catwalk'
     uses: charmbracelet/meta/.github/workflows/build.yml@main
     with:
       go-version: ""
