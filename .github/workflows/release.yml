@@ -11,6 +11,7 @@ concurrency:
 
 jobs:
   goreleaser:
+    if: github.repository == 'charmbracelet/catwalk'
     uses: charmbracelet/meta/.github/workflows/goreleaser.yml@main
     with:
       go_version: stable
