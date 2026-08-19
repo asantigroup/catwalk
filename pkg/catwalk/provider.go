@@ -59,10 +59,8 @@ const (
 	InferenceProviderFireworks        InferenceProvider = "fireworks"
 	InferenceProviderBaseten          InferenceProvider = "baseten"
 	InferenceProviderMoonshot         InferenceProvider = "moonshot"
-	InferenceProviderAtlasCloud       InferenceProvider = "atlascloud"
-	InferenceProviderCoralBricks      InferenceProvider = "coralbricks"
-	InferenceProviderScaleway         InferenceProvider = "scaleway"
 	InferenceProviderUmans            InferenceProvider = "umans"
+	InferenceProviderAsanti           InferenceProvider = "asanti"
 )
 
 // Provider represents an AI provider configuration.
@@ -118,7 +116,6 @@ func KnownProviders() []InferenceProvider {
 		InferenceProviderVertexAI,
 		InferenceProviderXAI,
 		InferenceProviderZAI,
-		InferenceProviderDeepSeek,
 		InferenceProviderZhipu,
 		InferenceProviderZhipuCoding,
 		InferenceProviderGROQ,
@@ -134,22 +131,17 @@ func KnownProviders() []InferenceProvider {
 		InferenceProviderVercel,
 		InferenceProviderMiniMax,
 		InferenceProviderMiniMaxChina,
-		InferenceProviderIoNet,
 		InferenceProviderQiniuCloud,
 		InferenceProviderAvian,
 		InferenceProviderNebius,
 		InferenceProviderNeuralwatt,
 		InferenceProviderOpenCodeZen,
 		InferenceProviderOpenCodeGo,
-		InferenceProviderAlibabaSingapore,
-		InferenceProviderAlibabaUS,
 		InferenceProviderFireworks,
 		InferenceProviderBaseten,
 		InferenceProviderMoonshot,
-		InferenceProviderAtlasCloud,
-		InferenceProviderCoralBricks,
-		InferenceProviderScaleway,
 		InferenceProviderUmans,
+		InferenceProviderAsanti,
 	}
 }
 
