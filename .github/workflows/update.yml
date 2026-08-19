@@ -1,0 +1,62 @@
+name: Update Providers
+
+on:
+  schedule:
+    - cron: "0 */6 * * *" # Run every 6 hours
+      timezone: "America/New_York"
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-providers:
+    if: github.repository == 'charmbracelet/catwalk'
+    name: Update Providers
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Setup Mise
+        uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5.0.0
+
+      - name: Go Mod Download
+        run: go mod download
+
+      - name: Asanti
+        run: go run ./cmd/asanti/main.go
+        continue-on-error: true
+        env:
+          ASANTI_API_KEY: ${{ secrets.ASANTI_API_KEY }}
+
+      - name: OpenCode Go
+        run: go run ./cmd/opencode-go/main.go
+        continue-on-error: true
+
+      - name: OpenCode Zen
+        run: go run ./cmd/opencode-zen/main.go
+        continue-on-error: true
+
+      - name: OpenRouter
+        run: go run ./cmd/openrouter/main.go
+        continue-on-error: true
+
+      - name: Synthetic
+        run: go run ./cmd/synthetic/main.go
+        continue-on-error: true
+
+      - name: Umans
+        run: go run ./cmd/umans/main.go
+        continue-on-error: true
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          title: "chore: auto-update generated files"
+          body: ""
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          commit-message: "chore: auto-update generated files"
+          branch: update-providers
+          reviewers: andreynering,meowgorithm
