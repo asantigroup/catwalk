@@ -112,7 +112,10 @@ func main() {
 			defaultMaxTokens = 32768
 		}
 
-		canReason := !strings.Contains(model.ID, "flash")
+		// "flash" usually marks a fast non-reasoning model, but
+		// Deepseek V4 Flash variants do reason — only treat GLM and
+		// the base umans-flash as non-reasoning.
+		canReason := !strings.Contains(model.ID, "flash") || strings.HasPrefix(model.ID, "umans-deepseek")
 
 		m := catwalk.Model{
 			ID:                 model.ID,
