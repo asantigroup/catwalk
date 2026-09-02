@@ -19,9 +19,9 @@ import (
 
 // UmansModel represents a model from the Umans models API.
 type UmansModel struct {
-	ID            string   `json:"id"`
-	OwnedBy       string   `json:"owned_by"`
-	ContextLength int64    `json:"context_length"`
+	ID            string       `json:"id"`
+	OwnedBy       string       `json:"owned_by"`
+	ContextLength int64        `json:"context_length"`
 	Pricing       UmansPricing `json:"pricing,omitempty"`
 }
 
@@ -115,16 +115,24 @@ func main() {
 		canReason := !strings.Contains(model.ID, "flash")
 
 		m := catwalk.Model{
-			ID:                model.ID,
-			Name:              modelDisplayName(model.ID),
-			CostPer1MIn:       model.Pricing.Input,
-			CostPer1MOut:      model.Pricing.Output,
+			ID:                 model.ID,
+			Name:               modelDisplayName(model.ID),
+			CostPer1MIn:        model.Pricing.Input,
+			CostPer1MOut:       model.Pricing.Output,
 			CostPer1MInCached:  0,
 			CostPer1MOutCached: 0,
-			ContextWindow:     model.ContextLength,
-			DefaultMaxTokens:  defaultMaxTokens,
-			CanReason:         canReason,
-			SupportsImages:    true,
+			ContextWindow:      model.ContextLength,
+			DefaultMaxTokens:   defaultMaxTokens,
+			CanReason:          canReason,
+			SupportsImages:     true,
+		}
+
+		// The Umans gateway is OpenAI-compatible and accepts the
+		// standard "reasoning_effort" parameter. Reasoning models
+		// expose low/medium/high effort levels.
+		if canReason {
+			m.ReasoningLevels = []string{"low", "medium", "high"}
+			m.DefaultReasoningEffort = "high"
 		}
 
 		umansProvider.Models = append(umansProvider.Models, m)
