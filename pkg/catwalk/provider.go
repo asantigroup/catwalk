@@ -33,7 +33,6 @@ const (
 	InferenceProviderZAI              InferenceProvider = "zai"
 	InferenceProviderDeepSeek         InferenceProvider = "deepseek"
 	InferenceProviderZhipu            InferenceProvider = "zhipu"
-	InferenceProviderZhipuCoding      InferenceProvider = "zhipu-coding"
 	InferenceProviderGROQ             InferenceProvider = "groq"
 	InferenceProviderOpenRouter       InferenceProvider = "openrouter"
 	InferenceProviderCerebras         InferenceProvider = "cerebras"
@@ -200,7 +199,6 @@ func KnownProviders() []InferenceProvider {
 		InferenceProviderAsanti,
 		InferenceProviderSynthetic,
 		InferenceProviderZAI,
-		InferenceProviderZhipuCoding,
 		InferenceProviderUmans,
 		InferenceProviderOpenCodeGo,
 		InferenceProviderOpenCodeZen,
