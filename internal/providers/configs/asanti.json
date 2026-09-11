@@ -2,7 +2,7 @@
   "name": "Asanti",
   "id": "asanti",
   "api_key": "$ASANTI_API_KEY",
-  "api_endpoint": "https://agent.asanti.dev/",
+  "api_endpoint": "https://agent.asanti.dev/golem/llm/v1",
   "type": "openai-compat",
   "default_large_model_id": "asanti-coder",
   "default_small_model_id": "asanti-flash",
