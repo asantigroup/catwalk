@@ -10,6 +10,12 @@ import (
 func TestValidDefaultModels(t *testing.T) {
 	for _, p := range GetAll() {
 		t.Run(p.Name, func(t *testing.T) {
+			if len(p.Models) == 0 {
+				// Providers with an empty catalog auto-discover their
+				// models at runtime; the updater verifies the defaults
+				// against the gateway instead.
+				t.Skip("empty catalog, models auto-discovered")
+			}
 			var modelIds []string
 			for _, m := range p.Models {
 				modelIds = append(modelIds, m.ID)
