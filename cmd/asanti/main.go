@@ -68,7 +68,7 @@ func main() {
 		Name:                "Asanti",
 		ID:                  "asanti",
 		APIKey:              "$ASANTI_API_KEY",
-		APIEndpoint:         "https://agent.asanti.dev/",
+		APIEndpoint:         "https://agent.asanti.dev/golem/llm/v1",
 		Type:                catwalk.TypeOpenAICompat,
 		DefaultLargeModelID: "asanti-coder",
 		DefaultSmallModelID: "asanti-flash",
