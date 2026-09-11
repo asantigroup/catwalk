@@ -2,7 +2,7 @@
   "name": "Asanti",
   "id": "asanti",
   "api_key": "$ASANTI_API_KEY",
-  "api_endpoint": "https://llm.asanti.dev/v1",
+  "api_endpoint": "https://agent.asanti.dev/",
   "type": "openai-compat",
   "default_large_model_id": "zen-deepseek-v4-pro",
   "default_small_model_id": "zen-deepseek-v4-flash",
