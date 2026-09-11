@@ -31,9 +31,6 @@ var umansConfig []byte
 //go:embed configs/zai.json
 var zAIConfig []byte
 
-//go:embed configs/zhipu-coding.json
-var zhipuCodingConfig []byte
-
 // ProviderFunc is a function that returns a Provider.
 type ProviderFunc func() catwalk.Provider
 
@@ -41,7 +38,6 @@ var providerRegistry = []ProviderFunc{
 	asantiProvider,
 	syntheticProvider,
 	zAIProvider,
-	zhipuCodingProvider,
 	umansProvider,
 
 	// The remaining will be in alphabetical order.
@@ -100,8 +96,4 @@ func umansProvider() catwalk.Provider {
 
 func zAIProvider() catwalk.Provider {
 	return loadProviderFromConfig(zAIConfig)
-}
-
-func zhipuCodingProvider() catwalk.Provider {
-	return loadProviderFromConfig(zhipuCodingConfig)
 }
