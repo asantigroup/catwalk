@@ -27,9 +27,6 @@ var syntheticConfig []byte
 //go:embed configs/zai.json
 var zAIConfig []byte
 
-//go:embed configs/zhipu-coding.json
-var zhipuCodingConfig []byte
-
 //go:embed configs/umans.json
 var umansConfig []byte
 
@@ -40,7 +37,6 @@ var providerRegistry = []ProviderFunc{
 	asantiProvider,
 	syntheticProvider,
 	zAIProvider,
-	zhipuCodingProvider,
 	umansProvider,
 
 	// The remaining will be in alphabetical order.
@@ -89,10 +85,6 @@ func syntheticProvider() catwalk.Provider {
 
 func zAIProvider() catwalk.Provider {
 	return loadProviderFromConfig(zAIConfig)
-}
-
-func zhipuCodingProvider() catwalk.Provider {
-	return loadProviderFromConfig(zhipuCodingConfig)
 }
 
 func umansProvider() catwalk.Provider {
