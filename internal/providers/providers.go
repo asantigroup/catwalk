@@ -10,6 +10,9 @@ import (
 	"charm.land/catwalk/v3/pkg/catwalk"
 )
 
+//go:embed configs/alibaba-singapore.json
+var alibabaSingaporeConfig []byte
+
 //go:embed configs/asanti.json
 var asantiConfig []byte
 
@@ -41,6 +44,7 @@ var providerRegistry = []ProviderFunc{
 	umansProvider,
 
 	// The remaining will be in alphabetical order.
+	alibabaSingaporeProvider,
 	openCodeGoProvider,
 	openCodeZenProvider,
 	openRouterProvider,
@@ -68,6 +72,10 @@ func loadProviderFromConfig(configData []byte) catwalk.Provider {
 		return catwalk.Provider{}
 	}
 	return p
+}
+
+func alibabaSingaporeProvider() catwalk.Provider {
+	return loadProviderFromConfig(alibabaSingaporeConfig)
 }
 
 func asantiProvider() catwalk.Provider {

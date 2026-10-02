@@ -216,6 +216,7 @@ func KnownProviders() []InferenceProvider {
 		InferenceProviderSynthetic,
 		InferenceProviderZAI,
 		InferenceProviderUmans,
+		InferenceProviderAlibabaSingapore,
 		InferenceProviderOpenCodeGo,
 		InferenceProviderOpenCodeZen,
 		InferenceProviderOpenRouter,
