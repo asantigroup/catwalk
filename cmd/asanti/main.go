@@ -12,7 +12,7 @@ import (
 	"os"
 	"time"
 
-	"charm.land/catwalk/pkg/catwalk"
+	"charm.land/catwalk/v3/pkg/catwalk"
 )
 
 // Model represents a model from the OpenAI-compatible models API.
@@ -69,7 +69,7 @@ func main() {
 		ID:                  "asanti",
 		APIKey:              "$ASANTI_API_KEY",
 		APIEndpoint:         "https://agent.asanti.dev/golem/llm/v1",
-		Type:                catwalk.TypeOpenAICompat,
+		Type:                catwalk.TypeCompletions,
 		DefaultLargeModelID: "asanti-coder",
 		DefaultSmallModelID: "asanti-flash",
 	}
