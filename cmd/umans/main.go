@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"charm.land/catwalk/pkg/catwalk"
+	"charm.land/catwalk/v3/pkg/catwalk"
 )
 
 // UmansModel represents a model from the Umans models API.
@@ -89,7 +89,7 @@ func main() {
 		ID:                  "umans",
 		APIKey:              "$UMANS_API_KEY",
 		APIEndpoint:         "https://api.code.umans.ai/v1",
-		Type:                catwalk.TypeOpenAICompat,
+		Type:                catwalk.TypeCompletions,
 		DefaultLargeModelID: "umans-coder",
 		DefaultSmallModelID: "umans-flash",
 	}
@@ -118,24 +118,31 @@ func main() {
 		canReason := !strings.Contains(model.ID, "flash") || strings.HasPrefix(model.ID, "umans-deepseek")
 
 		m := catwalk.Model{
-			ID:                 model.ID,
-			Name:               modelDisplayName(model.ID),
-			CostPer1MIn:        model.Pricing.Input,
-			CostPer1MOut:       model.Pricing.Output,
-			CostPer1MInCached:  0,
-			CostPer1MOutCached: 0,
-			ContextWindow:      model.ContextLength,
-			DefaultMaxTokens:   defaultMaxTokens,
-			CanReason:          canReason,
-			SupportsImages:     true,
+			ID:               model.ID,
+			Name:             modelDisplayName(model.ID),
+			Pricing: catwalk.Pricing{
+				Input:  model.Pricing.Input,
+				Output: model.Pricing.Output,
+			},
+			ContextWindow:    model.ContextLength,
+			DefaultMaxTokens: defaultMaxTokens,
+			Reasoning: catwalk.Reasoning{
+				Thinking: catwalk.ThinkingNever,
+			},
+			Capabilities: catwalk.Capabilities{
+				Vision: true,
+			},
 		}
 
 		// The Umans gateway is OpenAI-compatible and accepts the
 		// standard "reasoning_effort" parameter. Reasoning models
 		// expose low/medium/high effort levels.
 		if canReason {
-			m.ReasoningLevels = []string{"low", "medium", "high"}
-			m.DefaultReasoningEffort = "high"
+			m.Reasoning = catwalk.Reasoning{
+				Thinking:           catwalk.ThinkingToggleable,
+				EffortLevels:       catwalk.NewEffortLevels("low", "medium", "high"),
+				DefaultEffortLevel: "high",
+			}
 		}
 
 		umansProvider.Models = append(umansProvider.Models, m)

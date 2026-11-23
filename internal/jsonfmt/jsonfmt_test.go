@@ -95,7 +95,7 @@ func TestFormatInvalidJSONReturnsInput(t *testing.T) {
 func TestFormatRoundTripsRealConfig(t *testing.T) {
 	for _, name := range []string{
 		"../../internal/providers/configs/openrouter.json",
-		"../../internal/providers/configs/anthropic.json",
+		"../../internal/providers/configs/alibaba-singapore.json",
 	} {
 		raw, err := os.ReadFile(name)
 		if err != nil {
